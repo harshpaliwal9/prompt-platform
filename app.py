@@ -50,7 +50,7 @@ PRICING = {
 def call_gemini(prompt, api_key):
     import google.generativeai as genai
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    model = genai.GenerativeModel("gemini-3.5-flash-lite")
     start = time.time()
     response = model.generate_content(prompt)
     elapsed = time.time() - start
