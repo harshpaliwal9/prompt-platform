@@ -62,7 +62,12 @@ def call_huggingface(prompt, api_key, model_id="mistralai/Mistral-7B-Instruct-v0
     from huggingface_hub import InferenceClient
     client = InferenceClient(token=api_key)
     start = time.time()
-    result = client.text_generation(prompt, model=model_id, max_new_tokens=300)
+    response = client.chat_completion(
+        messages=[{"role": "user", "content": prompt}],
+        model=model_id,
+        max_tokens=300,
+    )
+    result = response.choices[0].message.content
     elapsed = time.time() - start
     return result, elapsed
 
