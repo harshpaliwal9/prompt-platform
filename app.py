@@ -39,7 +39,7 @@ data = st.session_state.data
 # ---------------------------------------------------------------------------
 
 PRICING = {
-    "Gemini 1.5 Flash": {"input": 0.000075, "output": 0.0003},
+    "Gemini 2.5 Flash": {"input": 0.000075, "output": 0.0003},
     "Hugging Face (Mistral-7B)": {"input": 0.0, "output": 0.0},  # free inference API
 }
 
@@ -50,7 +50,7 @@ PRICING = {
 def call_gemini(prompt, api_key):
     import google.generativeai as genai
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     start = time.time()
     response = model.generate_content(prompt)
     elapsed = time.time() - start
@@ -163,15 +163,15 @@ elif page == "🆚 A/B Testing":
 
         col1, col2 = st.columns(2)
         with col1:
-            model_a = st.selectbox("Model A", ["Gemini 1.5 Flash", "Hugging Face (Mistral-7B)"], key="a")
+            model_a = st.selectbox("Model A", ["Gemini 2.5 Flash", "Hugging Face (Mistral-7B)"], key="a")
         with col2:
-            model_b = st.selectbox("Model B", ["Hugging Face (Mistral-7B)", "Gemini 1.5 Flash"], key="b")
+            model_b = st.selectbox("Model B", ["Hugging Face (Mistral-7B)", "Gemini 2.5 Flash"], key="b")
 
         if st.button("🚀 Run A/B Test"):
             results = {}
             for label, model in [("A", model_a), ("B", model_b)]:
                 try:
-                    if model == "Gemini 1.5 Flash":
+                    if model == "Gemini 2.5 Flash":
                         if not gemini_key:
                             st.error("Enter a Gemini API key in the sidebar.")
                             st.stop()
