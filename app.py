@@ -58,7 +58,7 @@ def call_gemini(prompt, api_key):
     return text, elapsed
 
 
-def call_huggingface(prompt, api_key, model_id="mistralai/Mistral-7B-Instruct-v0.3"):
+def call_huggingface(prompt, api_key, model_id="meta-llama/Llama-3.1-8B-Instruct"):
     from huggingface_hub import InferenceClient
     client = InferenceClient(token=api_key)
     start = time.time()
